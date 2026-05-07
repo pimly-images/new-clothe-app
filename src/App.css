@@ -182,3 +182,10 @@
     border-right-color: var(--border);
   }
 }
+
+
+/* 追加css */
+.app-container {
+  background: linear-gradient(180deg, #e0f2fe 0%, #ffffff 100%);
+  /* 晴天なら薄い青、夜なら濃い紺色に変えるのも素敵です */
+}
