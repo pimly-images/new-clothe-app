@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 import { Routes, Route, Link } from 'react-router-dom';
@@ -85,22 +86,31 @@ const Home = ({ weather, loading, locationName, handleGetCurrentLocation, getUvL
 
 // --- メインのAppコンポーネント ---
 >>>>>>> 13cc7f9 (feat: React Routerを導入し、Aboutページを追加)
+=======
+
+>>>>>>> 9d403b62e4b21fd59057021da30572dccfa19e4e
 function App() {
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(true);
   const [coords, setCoords] = useState({ lat: 35.6895, lon: 139.6917 });
   const [locationName, setLocationName] = useState("新宿");
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 9d403b62e4b21fd59057021da30572dccfa19e4e
 
   const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
 
   // --- 判定ロジック群 ---
 
+<<<<<<< HEAD
 =======
   const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
 
   // 判定ロジック群
 >>>>>>> 13cc7f9 (feat: React Routerを導入し、Aboutページを追加)
+=======
+>>>>>>> 9d403b62e4b21fd59057021da30572dccfa19e4e
   const getUvLevel = (uv) => {
     if (uv >= 8) return { label: "非常に強い", color: "#d63384" };
     if (uv >= 6) return { label: "強い", color: "#fd7e14" };
@@ -121,11 +131,16 @@ function App() {
       case 'Clear': return 'linear-gradient(135deg, #FFDEE9 0%, #B5FFFC 100%)';
       case 'Clouds': return 'linear-gradient(135deg, #E0EAFC 0%, #CFDEF3 100%)';
 <<<<<<< HEAD
+<<<<<<< HEAD
       case 'Rain':
       case 'Drizzle': return 'linear-gradient(135deg, #606c88 0%, #3f4c6b 100%)';
 =======
       case 'Rain': case 'Drizzle': return 'linear-gradient(135deg, #606c88 0%, #3f4c6b 100%)';
 >>>>>>> 13cc7f9 (feat: React Routerを導入し、Aboutページを追加)
+=======
+      case 'Rain':
+      case 'Drizzle': return 'linear-gradient(135deg, #606c88 0%, #3f4c6b 100%)';
+>>>>>>> 9d403b62e4b21fd59057021da30572dccfa19e4e
       case 'Snow': return 'linear-gradient(135deg, #E0EAFC 0%, #ffffff 100%)';
       default: return 'linear-gradient(135deg, #e0f2fe 0%, #fff 100%)';
     }
@@ -133,6 +148,9 @@ function App() {
 
   const getMejiroConfig = (weatherMain, uv) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 9d403b62e4b21fd59057021da30572dccfa19e4e
     if (uv >= 6 && weatherMain === 'Clear') {
       return { image: "/mejiro-sunny.png", message: "日差しが強いね！メジロも日陰を探しちゃうよ。" };
     }
@@ -159,6 +177,7 @@ function App() {
       const uvRes = await fetch(
         `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${API_KEY}`
       );
+<<<<<<< HEAD
 =======
     if (uv >= 6 && weatherMain === 'Clear') return { image: "/mejiro-sunny.png", message: "日差しが強いね！メジロも日陰を探しちゃうよ。" };
     switch (weatherMain) {
@@ -175,6 +194,8 @@ function App() {
       const weatherData = await weatherRes.json();
       const uvRes = await fetch(`https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${API_KEY}`);
 >>>>>>> 13cc7f9 (feat: React Routerを導入し、Aboutページを追加)
+=======
+>>>>>>> 9d403b62e4b21fd59057021da30572dccfa19e4e
       const uvData = await uvRes.json();
       setWeather({ ...weatherData, uvi: uvData.value });
       if (weatherData.name) setLocationName(weatherData.name);
@@ -186,12 +207,18 @@ function App() {
   };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   useEffect(() => {
     fetchWeather(coords.lat, coords.lon);
   }, [coords]);
 =======
   useEffect(() => { fetchWeather(coords.lat, coords.lon); }, [coords]);
 >>>>>>> 13cc7f9 (feat: React Routerを導入し、Aboutページを追加)
+=======
+  useEffect(() => {
+    fetchWeather(coords.lat, coords.lon);
+  }, [coords]);
+>>>>>>> 9d403b62e4b21fd59057021da30572dccfa19e4e
 
   const handleGetCurrentLocation = () => {
     if (!navigator.geolocation) return;
@@ -202,6 +229,9 @@ function App() {
   };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 9d403b62e4b21fd59057021da30572dccfa19e4e
   if (loading && !weather) return <div style={{ textAlign: 'center', marginTop: '50px' }}>読み込み中...</div>;
 
   // --- 表示用データの準備 ---
@@ -294,6 +324,7 @@ function App() {
 }
 
 export default App;
+<<<<<<< HEAD
 =======
   return (
     <Routes>
@@ -316,3 +347,5 @@ export default App;
 
 export default App;
 >>>>>>> 13cc7f9 (feat: React Routerを導入し、Aboutページを追加)
+=======
+>>>>>>> 9d403b62e4b21fd59057021da30572dccfa19e4e

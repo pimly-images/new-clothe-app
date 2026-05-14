@@ -12,11 +12,15 @@
   "dependencies": {
     "react": "^19.2.5",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "react-dom": "^19.2.5"
 =======
     "react-dom": "^19.2.5",
     "react-router-dom": "^7.15.0"
 >>>>>>> 13cc7f9 (feat: React Routerを導入し、Aboutページを追加)
+=======
+    "react-dom": "^19.2.5"
+>>>>>>> 9d403b62e4b21fd59057021da30572dccfa19e4e
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
