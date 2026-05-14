@@ -1,0 +1,70 @@
+[33mcommit 69de2ebaefb26a611f48af62240cb5ea1ee449b4[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Merge: c836b88 9d403b6
+Author: miho-kubota <adg4618@gmail.com>
+Date:   Thu May 14 14:04:46 2026 +0900
+
+    Clean push
+    
+    ;
+    i:
+    :wq
+
+[33mcommit c836b8818acc822b695951f13ad42ea867ed3731[m
+Author: miho-kubota <adg4618@gmail.com>
+Date:   Wed May 13 17:26:39 2026 +0900
+
+    fix: セキュリティ保護のため.envを対象外にし、aboutページを追加
+
+[33mcommit 31b312e40d625ba6d6cdc00e618dbe1a013d9eb7[m
+Author: miho-kubota <adg4618@gmail.com>
+Date:   Wed May 13 15:45:17 2026 +0900
+
+    Initial commit (Clean version)
+
+[33mcommit 9d403b62e4b21fd59057021da30572dccfa19e4e[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: pimly-images <79437464+pimly-images@users.noreply.github.com>
+Date:   Fri May 8 15:18:58 2026 +0900
+
+    Rename App.jsx to src/App.jsx
+
+[33mcommit fb3ea144541a311cdd91d54ce090b4f5b3926f12[m
+Author: pimly-images <79437464+pimly-images@users.noreply.github.com>
+Date:   Fri May 8 15:18:14 2026 +0900
+
+    Delete src/App.jsx
+
+[33mcommit 92cec2217af7e41ae06da5d88c723928c1bd694b[m
+Author: pimly-images <79437464+pimly-images@users.noreply.github.com>
+Date:   Fri May 8 15:16:00 2026 +0900
+
+    Rename App.css to src/App.css
+
+[33mcommit c5abff4ba113d2913e73891e52f0b556a63a2e27[m
+Author: pimly-images <79437464+pimly-images@users.noreply.github.com>
+Date:   Fri May 8 15:15:32 2026 +0900
+
+    Delete src/App.css
+
+[33mcommit 997e78d0fc9ae512d2ecb08117c7c293b45c6bbe[m
+Author: pimly-images <79437464+pimly-images@users.noreply.github.com>
+Date:   Fri May 8 15:07:05 2026 +0900
+
+    Add files via upload
+
+[33mcommit 1de05ce57472607dc4bb92387a72c4105e028586[m
+Author: pimly-images <79437464+pimly-images@users.noreply.github.com>
+Date:   Fri May 8 15:06:11 2026 +0900
+
+    Add files via upload
+
+[33mcommit 8465ff2d969f8d8145d08f1865d1ced91ee50ece[m
+Author: pimly <adg4618@gmail.com>
+Date:   Thu May 7 22:28:03 2026 +0900
+
+    メジロのイラスト切り替え機能を追加
+
+[33mcommit 1be0543b6be20f45b2303094c55d8e08c79f5dd1[m
+Author: pimly <adg4618@gmail.com>
+Date:   Thu May 7 13:10:56 2026 +0900
+
+    first commit
