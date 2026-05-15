@@ -19,9 +19,9 @@ const Home = ({ weather, loading, locationName, handleGetCurrentLocation, getUvL
 
   return (
     <div style={{ 
-      textAlign: 'center', padding: '20px 20px', fontFamily: 'sans-serif', 
+      textAlign: 'center', padding: '0px 20px 30px 20px', fontFamily: 'sans-serif', 
       background: backgroundStyle, transition: 'background 0.5s ease',
-      color: weatherMain === 'Rain' ? '#fff' : '#333', minHeight: '100vh' 
+      color: weatherMain === 'Rain' ? '#007bff' : '#333', minHeight: '100vh' 
     }}>
       <h1 style={{ fontSize: '1.5rem', marginBottom: '10px' }}>今のお天気から見る服装アドバイザー</h1>
       <div className='current-place-box'>

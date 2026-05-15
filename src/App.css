@@ -187,7 +187,6 @@
 /* 追加css */
 .app-container {
   background: linear-gradient(180deg, #e0f2fe 0%, #ffffff 100%);
-  /* 晴天なら薄い青、夜なら濃い紺色に変えるのも素敵です */
 }
 
 .weather-description{ line-height: 1.5; font-size: 1.1rem;margin: 0 auto; }
@@ -220,7 +219,7 @@
 }
 
 .guide-copy{ width: 80%; margin: auto; padding: 20px; background-color: #e0f2fe; color: #007bff; border-radius: 20px; margin-bottom: 20px;}
-.guide01{ width: 80%; margin: auto; margin-bottom: 40px; }
+.guide01{ width: 80%; margin: auto; margin-bottom: 40px; text-align: left; }
 .guide01 h2{ border-bottom: 1px #6eb1f8 dotted; }
 .guide-title{ font-size: 26px; }
 .guide-page-bg{ width: 80%; margin: auto; padding: 30px; background-color: #eee8fc; border-radius: 20px; }

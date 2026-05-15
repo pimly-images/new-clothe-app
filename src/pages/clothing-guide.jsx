@@ -10,7 +10,7 @@ export const ClothingGuide = () => {
  <div className='guide-page-bg'>     
       <section className='guide01'>
         <h2>👕 Tシャツ（綿100%）</h2>
-        <p>Tシャツ1枚で、体感温度は約 <strong>+2℃</strong> 上がると言われています。綿は吸水性が高いですが、汗をかくと冷えやすいので注意が必要です。</p>
+        <p>Tシャツ1枚で、体感温度は約 <strong>+2℃</strong> 上がると言われています。<br />綿は吸水性が高いですが、汗をかくと冷えやすいので注意が必要です。</p>
       </section>
 
       <section className='guide01'>
@@ -23,7 +23,7 @@ export const ClothingGuide = () => {
         <p>ニット素材は空気をたくさん含むので、1枚で <strong>+5℃以上</strong> 体感温度が変わることもあります。</p>
       </section>
  <section className='guide01'>
-<h2>👚綿のシャツ（コットン）</h2><p>熱を伝える力（熱伝導率）が少し高めなので、実は「着るとすぐ温まる」というよりは「肌の熱を外に逃がしやすい」素材です。だから夏は涼しくて快適なんですね。</p>
+<h2>👚綿のシャツ（コットン）</h2><p>熱を伝える力（熱伝導率）が少し高めなので、実は「着るとすぐ温まる」というよりは「肌の熱を外に逃がしやすい」素材です。<br />だから夏は涼しくて快適なんですね。</p>
 </section>
  <section className='guide01'>
 <h2>👕Tシャツの重ね着</h2><p>1枚で約 2℃。2枚重ねると、その間の「動かない空気（デッドエア）」が魔法瓶のような役割をして、単純な足し算以上の温かさを感じることがあります。</p>
@@ -44,7 +44,7 @@ export const ClothingGuide = () => {
 <figure>
 <img src="/layer.png" alt="重ね着の仕組み" style={{ width: '100%',  height: 'auto' }} />
 <figcaption style={{ fontSize: '0.9rem', color: '#666', marginTop: '10px' }}>
-    ▲ 図1：重ね着による空気の層（デッドエア）のイメージ
+    ▲ 図1：重ね着による空気の層（デッドエア）のイメージ。<br />肌に直接触れる層には吸湿性の高い**綿（コットン）**を、その上には空気を溜め込む素材を重ねることで、体温を効率よく守ることができます。
   </figcaption>
 </figure>
 </section>

@@ -20,12 +20,12 @@ const AboutPage = () => {
         </p>
       </header>
 
-      <section style={{ marginBottom: '40px' }}>
+      <section style={{ marginBottom: '40px' }} className='guide01'>
         <h2 style={{ borderBottom: '2px solid #f0f0f0', paddingBottom: '10px', color: '#555' }}>
           コンセプト
         </h2>
         <p>
-          「今日は何を着ていこう？」<br />
+          🌞「今日は何を着ていこう？」<br />
           朝、窓の外を見ながら悩む時間は、忙しい毎日の中で少しだけもったいない時間かもしれません。
         </p>
         <p>
@@ -34,18 +34,18 @@ const AboutPage = () => {
         </p>
       </section>
 
-      <section style={{ marginBottom: '40px' }}>
+      <section style={{ marginBottom: '40px' }} className='guide01'>
         <h2 style={{ borderBottom: '2px solid #f0f0f0', paddingBottom: '10px', color: '#555' }}>
           主な機能
         </h2>
         <ul style={{ paddingLeft: '20px' }}>
-          <li><strong>リアルタイム天気予報：</strong> 現在地の正確な天気を瞬時に確認できます。</li>
-          <li><strong>服装アドバイス：</strong> 気温（最高・最低）に合わせた最適なコーディネートを提案します。</li>
-          <li><strong>お出かけ指数：</strong> 雨具の必要性や、紫外線・寒さ対策のヒントをお届けします。</li>
+          <li><strong>☀リアルタイム天気予報：</strong> 現在地の正確な天気を瞬時に確認できます。</li>
+          <li><strong>👕服装アドバイス：</strong> 気温（最高・最低）に合わせた最適なコーディネートを提案します。</li>
+          <li><strong>🗺️お出かけ指数：</strong> 雨具の必要性や、紫外線・寒さ対策のヒントをお届けします。</li>
         </ul>
       </section>
 
-      <section style={{ textAlign: 'center', marginTop: '80px', padding: '40px', backgroundColor: '#f9f9f9', borderRadius: '15px' }}>
+      <section style={{ textAlign: 'center', marginTop: '80px', padding: '40px', backgroundColor: '#f9f9f9', borderRadius: '15px' }} className='guide01'>
         <p style={{ fontStyle: 'italic', color: '#666' }}>
           お気に入りの服を着て、空を見上げて。
           今日も素敵な一日になりますように。
