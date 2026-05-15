@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import { Routes, Route, Link } from 'react-router-dom';
 import About from './pages/about';
+import { ClothingGuide } from './pages/clothing-guide';
 
 // --- 天気予報を表示するメイン画面のコンポーネント ---
 const Home = ({ weather, loading, locationName, handleGetCurrentLocation, getUvLevel, getAdvice, getBackgroundStyle, getMejiroConfig }) => {
@@ -74,7 +75,8 @@ const Home = ({ weather, loading, locationName, handleGetCurrentLocation, getUvL
       )}
       
       <footer style={{ marginTop: '40px' }}>
-        <Link to="/about" style={{ color: 'inherit', textDecoration: 'underline' }}>このサイトについて (About)</Link>
+        <Link to="/about" style={{ color: 'inherit', textDecoration: 'underline' }}>このサイトについて</Link>
+        <Link to="/about" style={{ color: 'inherit', textDecoration: 'underline' }}>服と体感温度のひみつ</Link>
       </footer>
     </div>
   );
@@ -178,6 +180,7 @@ function App() {
           <nav style={{ marginBottom: '20px' }}><Link to="/">← ホームへ戻る</Link></nav>
         </div>
       } />
+<Route path="/guide" element={<ClothingGuide />} />
     </Routes>
   );
 }
