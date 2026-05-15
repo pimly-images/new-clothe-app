@@ -4,6 +4,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 import About from './pages/about';
 import { ClothingGuide } from './pages/clothing-guide';
 
+
 // --- 天気予報を表示するメイン画面のコンポーネント ---
 const Home = ({ weather, loading, locationName, handleGetCurrentLocation, getUvLevel, getAdvice, getBackgroundStyle, getMejiroConfig }) => {
   if (loading && !weather) return <div style={{ textAlign: 'center', marginTop: '50px' }}>読み込み中...</div>;
@@ -76,7 +77,7 @@ const Home = ({ weather, loading, locationName, handleGetCurrentLocation, getUvL
       
       <footer style={{ marginTop: '40px' }}>
         <Link to="/about" style={{ color: 'inherit', textDecoration: 'underline' }}>このサイトについて</Link>
-        <Link to="/about" style={{ color: 'inherit', textDecoration: 'underline' }}>服と体感温度のひみつ</Link>
+        <Link to="/clothing-guide" style={{ color: 'inherit', textDecoration: 'underline' }}>服と体感温度のひみつ</Link>
       </footer>
     </div>
   );
@@ -165,23 +166,32 @@ function App() {
   };
 
   return (
-    <Routes>
-      <Route path="/" element={
-        <Home 
-          weather={weather} loading={loading} locationName={locationName} 
-          handleGetCurrentLocation={handleGetCurrentLocation} getUvLevel={getUvLevel}
-          getAdvice={getAdvice} getBackgroundStyle={getBackgroundStyle} getMejiroConfig={getMejiroConfig}
-        />
-      } />
-      <Route path="/about" element={
-        <div style={{ textAlign: 'center', padding: '40px' }}>
+<Routes>
+  {/* ホームページ */}
+  <Route path="/" element={
+    <Home 
+      weather={weather} loading={loading} locationName={locationName} 
+      handleGetCurrentLocation={handleGetCurrentLocation} getUvLevel={getUvLevel}
+      getAdvice={getAdvice} getBackgroundStyle={getBackgroundStyle} getMejiroConfig={getMejiroConfig}
+    />
+  } />
 
-          <About />
-          <nav style={{ marginBottom: '20px' }}><Link to="/">← ホームへ戻る</Link></nav>
-        </div>
-      } />
-<Route path="/guide" element={<ClothingGuide />} />
-    </Routes>
+  {/* Aboutページ */}
+  <Route path="/about" element={
+    <div style={{ textAlign: 'center', padding: '40px' }}>
+      <About />
+      <nav style={{ marginTop: '20px' }}><Link to="/">← ホームへ戻る</Link></nav>
+    </div>
+  } />
+
+  {/* ★新設：服ごとの体感温度ページ */}
+  <Route path="/guide" element={
+    <div style={{ textAlign: 'center', padding: '40px' }}>
+      <ClothingGuide />
+      <nav style={{ marginTop: '20px' }}><Link to="/">← ホームへ戻る</Link></nav>
+    </div>
+  } />
+</Routes>
   );
 }
 
