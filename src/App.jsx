@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import { Routes, Route, Link } from 'react-router-dom';
 import About from './pages/about';
-import { ClothingGuide } from './pages/guide';
+import { ClothingGuide } from './pages/clothing-guide';
 
 
 // --- 天気予報を表示するメイン画面のコンポーネント ---
@@ -75,11 +75,11 @@ const Home = ({ weather, loading, locationName, handleGetCurrentLocation, getUvL
         </>
       )}
       
-      <footer style={{ marginTop: '40px' }}>
+      <footer className='foot-menu' style={{ marginTop: '40px' }}>
 <div>
         <Link to="/about" style={{ color: 'inherit', textDecoration: 'underline' }}>🌞このサイトについて</Link></div>
 <div style={{ marginLeft:'20px' }}>
-        <Link to="/guide" style={{ color: 'inherit', textDecoration: 'underline',marginLeft:'20px' }}>🌡️服と体感温度のひみつ</Link></div>
+        <Link to="/clothing-guide" style={{ color: 'inherit', textDecoration: 'underline',marginLeft:'20px' }}>🌡️服と体感温度のひみつ</Link></div>
       </footer>
     </div>
   );
@@ -168,6 +168,7 @@ function App() {
   };
 
   return (
+
 <Routes>
   {/* ホームページ */}
   <Route path="/" element={
@@ -187,13 +188,14 @@ function App() {
   } />
 
   {/* ★新設：服ごとの体感温度ページ */}
-  <Route path="/guide" element={
+  <Route path="/clothing-guide" element={
     <div style={{ textAlign: 'center', padding: '40px' }}>
       <ClothingGuide />
       <nav style={{ marginTop: '20px' }}><Link to="/">← ホームへ戻る</Link></nav>
     </div>
   } />
 </Routes>
+
   );
 }
 

@@ -216,12 +216,13 @@
   display: block;
   margin: 0 auto;
   filter: drop-shadow(0 0 8px rgba(4, 59, 211, 0.8));
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> 13cc7f9 (feat: React Routerを導入し、Aboutページを追加)
-=======
-}
->>>>>>> 9d403b62e4b21fd59057021da30572dccfa19e4e
+
+.guide-copy{ width: 80%; margin: auto; padding: 20px; background-color: #e0f2fe; color: #007bff; border-radius: 20px; margin-bottom: 20px;}
+.guide01{ width: 80%; margin: auto; margin-bottom: 40px; }
+.guide01 h2{ border-bottom: 1px #6eb1f8 dotted; }
+.guide-title{ font-size: 26px; }
+.guide-page-bg{ width: 80%; margin: auto; padding: 30px; background-color: #eee8fc; border-radius: 20px; }
+
+.foot-menu{display:flex;justify-content:center;}
