@@ -173,8 +173,9 @@ function App() {
       } />
       <Route path="/about" element={
         <div style={{ textAlign: 'center', padding: '40px' }}>
-          <nav style={{ marginBottom: '20px' }}><Link to="/">← ホームへ戻る</Link></nav>
+
           <About />
+          <nav style={{ marginBottom: '20px' }}><Link to="/">← ホームへ戻る</Link></nav>
         </div>
       } />
     </Routes>
