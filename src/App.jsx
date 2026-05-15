@@ -19,7 +19,7 @@ const Home = ({ weather, loading, locationName, handleGetCurrentLocation, getUvL
 
   return (
     <div style={{ 
-      textAlign: 'center', padding: '40px 20px', fontFamily: 'sans-serif', 
+      textAlign: 'center', padding: '20px 20px', fontFamily: 'sans-serif', 
       background: backgroundStyle, transition: 'background 0.5s ease',
       color: weatherMain === 'Rain' ? '#fff' : '#333', minHeight: '100vh' 
     }}>
