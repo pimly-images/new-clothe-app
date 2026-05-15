@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import { Routes, Route, Link } from 'react-router-dom';
 import About from './pages/about';
-import { ClothingGuide } from './pages/clothing-guide';
+import { ClothingGuide } from './pages/guide';
 
 
 // --- 天気予報を表示するメイン画面のコンポーネント ---
