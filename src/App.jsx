@@ -77,7 +77,7 @@ const Home = ({ weather, loading, locationName, handleGetCurrentLocation, getUvL
       
       <footer style={{ marginTop: '40px' }}>
         <Link to="/about" style={{ color: 'inherit', textDecoration: 'underline' }}>このサイトについて</Link>
-        <Link to="/clothing-guide" style={{ color: 'inherit', textDecoration: 'underline' }}>服と体感温度のひみつ</Link>
+        <Link to="/guide" style={{ color: 'inherit', textDecoration: 'underline',marginLeft:'20px' }}>服と体感温度のひみつ</Link>
       </footer>
     </div>
   );
