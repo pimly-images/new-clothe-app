@@ -225,3 +225,40 @@
 .guide-page-bg{ width: 80%; margin: auto; padding: 30px; background-color: #eee8fc; border-radius: 20px; }
 
 .foot-menu{display:flex;justify-content:center;}
+
+/* --- スマートフォン用の設定 --- */
+@media screen and (max-width: 480px) {
+  .guide-copy{ width: 96%; margin: auto; padding: 20px; background-color: #e0f2fe; color: #007bff; border-radius: 20px; margin-bottom: 20px;}
+.guide01{ width: 96%; margin: auto; margin-bottom: 40px; text-align: left; }
+  /* 全体の文字サイズや余白を少し小さくして収まりやすく */
+  h1 {
+    font-size: 1.2rem !important;
+  }
+  
+  /* メインカードの横幅をスマホの画面いっぱいに広げる */
+  .main-card {
+    max-width: 90% !important;
+    padding: 20px !important;
+    border-radius: 20px !important;
+  }
+
+  /* メインの気温の文字が大きすぎてはみ出ないように調整 */
+  .temp-display {
+    font-size: 3.5rem !important;
+  }
+
+  /* メジロと吹き出しを縦並びに（狭い画面でも崩れないように） */
+  .mejiro-area {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+
+  /* 吹き出しの矢印（しっぽ）の位置を左から上に変更 */
+  .balloon-tail {
+    left: 50% !important;
+    top: -10px !important;
+    margin-left: -5px;
+    border-width: 0 5px 10px 5px !important;
+    border-color: transparent transparent #fff transparent !important;
+  }
+}
