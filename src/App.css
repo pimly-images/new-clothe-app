@@ -218,6 +218,11 @@
 
 }
 
+.clothing-guide-page{ background: linear-gradient(135deg, #f0fdf4 0%, #e6f4ea 100%); 
+min-height: 100vh;   
+  width: 100%;
+  padding: 40px 20px;  
+  box-sizing: border-box;}
 .guide-copy{ width: 80%; margin: auto; padding: 20px; background-color: #e0f2fe; color: #007bff; border-radius: 20px; margin-bottom: 20px;}
 .guide01{ width: 80%; margin: auto; margin-bottom: 40px; text-align: left; }
 .guide01 h2{ border-bottom: 1px #6eb1f8 dotted; }
@@ -228,9 +233,10 @@
 
 /* --- スマートフォン用の設定 --- */
 @media screen and (max-width: 480px) {
-  .guide-copy{ width: 96%; margin: auto; padding: 20px; background-color: #e0f2fe; color: #007bff; border-radius: 20px; margin-bottom: 20px;}
-.guide01{ width: 96%; margin: auto; margin-bottom: 40px; text-align: left; }
-  /* 全体の文字サイズや余白を少し小さくして収まりやすく */
+.guide-copy{ width: 100%; margin: auto; padding: 20px; background-color: #e0f2fe; color: #007bff; border-radius: 20px; margin-bottom: 20px;}
+.guide01{ width: 100%; margin: auto; margin-bottom: 40px; text-align: left; }
+  
+/* 全体の文字サイズや余白を少し小さくして収まりやすく */
   h1 {
     font-size: 1.2rem !important;
   }
