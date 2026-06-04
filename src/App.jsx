@@ -4,10 +4,9 @@ import { Routes, Route, Link } from 'react-router-dom';
 import About from './pages/about';
 import { ClothingGuide } from './pages/clothing-guide';
 
-
 // --- 天気予報を表示するメイン画面のコンポーネント ---
 const Home = ({ weather, loading, locationName, handleGetCurrentLocation, getUvLevel, getAdvice, getBackgroundStyle, getMejiroConfig }) => {
-  if (loading && !weather) return <div style={{ textAlign: 'center', marginTop: '50px' }}>読み込み中...</div>;
+  if (loading && !weather) return <div style={{ textAlign: 'center', marginTop: '30px' }}>読み込み中...</div>;
 
   const currentTemp = weather ? Math.round(weather.main.temp) : 0;
   const feelsLikeTemp = weather ? Math.round(weather.main.feels_like) : 0;
@@ -18,14 +17,10 @@ const Home = ({ weather, loading, locationName, handleGetCurrentLocation, getUvL
   const mejiro = getMejiroConfig(weatherMain, uvValue);
 
   return (
-    <div style={{ 
-      textAlign: 'center', padding: '0px 20px 30px 20px', fontFamily: 'sans-serif', 
-      background: backgroundStyle, transition: 'background 0.5s ease',
-      color: weatherMain === 'Rain' ? '#007bff' : '#333', minHeight: '100vh' 
-    }}>
+    <div className={'top-main ' + weatherMain} >
       <h1 style={{ fontSize: '1.5rem', marginBottom: '10px' }}>今のお天気から見る服装アドバイザー</h1>
       <div className='current-place-box'>
-        <button onClick={handleGetCurrentLocation} style={{ backgroundColor: '#007bff', color: 'white', border: 'none', padding: '10px 20px', borderRadius: '25px', cursor: 'pointer', fontWeight: 'bold' }}>
+        <button onClick={handleGetCurrentLocation} className='current-place-button'>
           📍 あなたの今いる場所の天気は？
         </button>
         <p className='ml-10' style={{ opacity: 0.8 }}><b>{locationName}</b>のお天気</p>
@@ -33,11 +28,7 @@ const Home = ({ weather, loading, locationName, handleGetCurrentLocation, getUvL
 
       {weather && (
         <>
-          <div style={{ 
-            margin: '0 auto 40px', maxWidth: '80%', padding: '30px', borderRadius: '30px', 
-            backgroundColor: 'rgba(255, 255, 255, 0.4)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',         
-            border: '1px solid rgba(255, 255, 255, 0.3)', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.05)' 
-          }}>
+          <div className='mainbox'>
             <div className='current-place-box02'>
               <img src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt={weather.weather[0].description} className="weather-icon" />
               <p className="weather-description">{weather.weather[0].description}</p>
@@ -188,12 +179,8 @@ function App() {
   } />
 
   {/* ★新設：服ごとの体感温度ページ */}
-  <Route path="/clothing-guide" element={
-    <div style={{ textAlign: 'center', padding: '40px' }}>
-      <ClothingGuide />
-      <nav style={{ marginTop: '20px' }}><Link to="/">← ホームへ戻る</Link></nav>
-    </div>
-  } />
+  {/* 修正後：外側の余計な div を撤去してスッキリ！ */}
+<Route path="/clothing-guide" element={<ClothingGuide />} />
 </Routes>
 
   );

@@ -1,10 +1,11 @@
 // src/pages/clothing-guide.jsx
 import React from 'react';
 import '../App.css';
+import { Link } from 'react-router-dom';
 
 export const ClothingGuide = () => {
   return (
-    <div style={{ lineHeight: '1.6' }} className="clothing-guide-page">
+    <div className="clothing-guide-page">
       <h1 className='guide-title'>🌡️服と体感温度のひみつ</h1>
 
       <p className='guide-copy'><strong>服を1枚重ねるごとに、体感温度はどのくらい変わるのでしょうか？</strong></p>
@@ -50,9 +51,17 @@ export const ClothingGuide = () => {
 </figure>
 </section>
 
+
+
 </div>
 
       {/* ここに窪田さんが調べた知識をどんどん足していけます！ */}
+
+ <nav style={{ marginTop: '20px', textAlign: 'center' }}>
+        <Link to="/" style={{ color: '#007bff', textDecoration: 'none', fontWeight: 'bold' }}>
+          ← ホームへ戻る
+        </Link>
+      </nav>     
     </div>
   );
 };

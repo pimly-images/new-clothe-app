@@ -1,3 +1,37 @@
+/* ==========================================================================
+   モダン・リセットCSS
+   ========================================================================== */
+
+/* 1. すべての要素（before, after含む）の余白をリセットし、サイズ計算を統一 */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 2. 画面の一番外枠（html, body, #root）を画面いっぱいに広げ、隙間を完全ゼロにする */
+html, body, #root {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh; /* スマホのメニューバー対策 */
+}
+
+/* 3. 画像が親の箱からはみ出さないようにするお守り */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* 4. リストのポチ（•）やリンクの下線を一旦消してスッキリさせる */
+ul, ol {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -51,11 +85,11 @@
 }
 
 body {
-  margin: 0;
+  margin: 0;padding: 0;
 }
 
 #root {
-  width: 1126px;
+  width: 100% !important;
   max-width: 100%;
   margin: 0 auto;
   text-align: center;

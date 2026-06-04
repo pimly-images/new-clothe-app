@@ -2,6 +2,17 @@ body {
   margin: 0;
   padding: 0;
 }
+#root {
+  width: 100% !important;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  border-inline: 1px solid var(--border);
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
 .counter {
   font-size: 16px;
   padding: 5px 10px;
@@ -189,13 +200,34 @@ body {
 
 
 /* 追加css */
+.top-main{
+text-align: center; padding: 0px 20px 30px 20px; font-family: sans-serif; 
+      background: backgroundStyle; transition: background 0.5s ease;
+       min-height: 100vh;}
+/* ベースの文字色（基本はこれ） */
+.weather-text {
+  color: #333; /* 曇りやその他の時はこの色になります */
+}
+
+/* 雨（Rain）のときの文字色を上書き */
+.weather-text.Rain {
+  color: #007bff; /* 青 */
+}
+
+/* 晴れ（Clear）のときの文字色を上書き（新しく追加！） */
+.weather-text.Clear {
+  color: #ff6b6b; /* 優しい赤（またはオレンジなど、お好きな色をどうぞ！） */
+}
 .app-container {
   background: linear-gradient(180deg, #e0f2fe 0%, #ffffff 100%);
 }
-
+.mainbox{margin: 0 auto 40px; max-width: 80%; padding: 30px; border-radius: 30px; 
+            background-color: rgba(255, 255, 255, 0.4); backdrop-filter: blur(12px); WebkitBackdropFilter: blur(12px);         
+            border: 1px solid rgba(255, 255, 255, 0.3); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05); 
+          }
 .weather-description{ line-height: 1.5; font-size: 1.1rem;margin: 0 auto; }
 .temperature-style{ line-height: 1.6; font-size: 5rem; font-weight: bold; color: #007bff;}
-.current-place-box{ width: 70%; margin: 0 auto 20px; 
+.current-place-box{ width: 70%; margin: 0 auto 20px;
   display: flex; 
   justify-content: center;
   align-items: center; 
@@ -203,6 +235,10 @@ body {
 .current-place-box p {
   margin: 0;
   white-space: nowrap; 
+}
+.current-place-button{
+  background-color: #007bff;
+   color: white; border: none; padding: 10px 20px; border-radius: 25px; cursor: pointer; font-weight: bold;
 }
 
 .current-place-box02{ width: 280px; margin: auto; display:flex; justify-content:center;align-items:center;}
@@ -219,18 +255,17 @@ body {
   display: block;
   margin: 0 auto;
   filter: drop-shadow(0 0 8px rgba(4, 59, 211, 0.8));
-
 }
 
-.clothing-guide-page{ background: linear-gradient(135deg, #f0fdf4 0%, #e6f4ea 100%); 
+.clothing-guide-page{ background: linear-gradient(135deg, #f8faf9 0%, #f6d4ec 100%); 
   min-height: 100vh;   
   width: 100%;
-  padding: 40px 20px;  
-  box-sizing: border-box; border: #007bff 10px;}
+  padding: 10px; margin: 0;  
+  box-sizing: border-box; line-height: 1.6; }
 .guide-copy{ width: 80%; margin: auto; padding: 20px; background-color: #e0f2fe; color: #007bff; border-radius: 20px; margin-bottom: 20px;}
 .guide01{ width: 80%; margin: auto; margin-bottom: 40px; text-align: left; }
 .guide01 h2{ border-bottom: 1px #6eb1f8 dotted; }
-.guide-title{ font-size: 26px; }
+.guide-title{ font-size: 26px; margin: 0 auto; line-height: 3;}
 .guide-page-bg{ width: 80%; margin: auto; padding: 30px; background-color: #eee8fc; border-radius: 20px; }
 
 .foot-menu{display:flex;justify-content:center;}
@@ -239,7 +274,22 @@ body {
 @media screen and (max-width: 480px) {
 .guide-copy{ width: 100%; margin: auto; padding: 20px; background-color: #e0f2fe; color: #007bff; border-radius: 20px; margin-bottom: 20px;}
 .guide01{ width: 100%; margin: auto; margin-bottom: 40px; text-align: left; }
-  
+.guide-page-bg{ width: 100%; margin: auto; padding: 10px; background-color: #eee8fc; border-radius: 20px; }
+.guide-copy{ width: 90%; margin: auto; padding: 20px; background-color: #e0f2fe; color: #007bff; border-radius: 20px; margin-bottom: 20px;}
+ 
+/* スマホトップページの設定 */
+.mainbox{margin: 0 auto 40px; max-width: 96%; padding: 20px; border-radius: 30px; 
+            background-color: rgba(255, 255, 255, 0.4); backdrop-filter: blur(12px); WebkitBackdropFilter: blur(12px);         
+            border: 1px solid rgba(255, 255, 255, 0.3); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05); 
+          }
+.current-place-box{ width: 90%; margin: 0 auto 20px; 
+  gap: 10px;}
+  .current-place-button{
+  backgroundColor: #007bff; color: white; border: none; padding: 10px 20px; borderRadius: 10px; cursor: pointer; font-weight: bold;
+}
+.current-place-box02{ width: 280px; margin: auto; 
+  display:flex; justify-content:center;align-items:center;}
+
 /* 全体の文字サイズや余白を少し小さくして収まりやすく */
   h1 {
     font-size: 1.2rem !important;
