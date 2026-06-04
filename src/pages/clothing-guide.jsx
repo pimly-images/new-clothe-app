@@ -21,7 +21,7 @@ export const ClothingGuide = () => {
       </section>
 
       <section className='guide01'>
-        <h2>🧶 カーディガン・セーター</h2>
+        <h2>🧶 カーディガン・セーター🐏</h2>
         <p>ニット素材は空気をたくさん含むので、1枚で <strong>+5℃以上</strong> 体感温度が変わることもあります。</p>
       </section>
  <section className='guide01'>
@@ -32,12 +32,12 @@ export const ClothingGuide = () => {
 </section>
 
  <section className='guide01'>
-<h2>🐏「綿」が夏に涼しい理由</h2>
+<h2>☁️「綿」が夏に涼しい理由</h2>
 <p>綿は水分を吸うと、その水分を外に逃がそうとします。その時に周囲の熱を一緒に持っていく（気化熱）ので、涼しく感じます。</p>
 </section>
 
  <section className='guide01'>
-<h2>🐏「綿」が冬にひんやりする理由</h2>
+<h2>☁️「綿」が冬にひんやりする理由</h2>
 <p>冬は空気が乾燥しているため、綿が含むわずかな水分が蒸発するだけでも、肌から熱を奪ってしまいます。だから冬に綿のシャツを1枚で着ると「なんだか寒い」と感じるんですね。</p>
 </section>
 
