@@ -305,7 +305,7 @@ h1.guide-title{ font-size: 26px; margin: 0 auto; line-height: 3; color: #007bff;
 .foot-menu{display:flex;justify-content:center;}
 
 /* Aboutの指定 */
-.about-box{ maxWidth: 800px;
+.about-box{ max-width: 800px; background-color: #fff;
       margin: 0 auto;
       padding: 40px 20px;
       font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
@@ -315,7 +315,7 @@ h1.guide-title{ font-size: 26px; margin: 0 auto; line-height: 3; color: #007bff;
 .about-mejiro{ width: 50%; height: auto; float: right; }
 
 /* ==========================================================================
-   修正版：右にメジロ、左にセリフ（PC時）
+   右にメジロ、左にセリフ（PC時）
    ========================================================================== */
 
 .about-mejiro-chat {
