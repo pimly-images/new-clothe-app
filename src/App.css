@@ -257,6 +257,29 @@ text-align: center; padding: 0px 20px 30px 20px; font-family: sans-serif;
   filter: drop-shadow(0 0 8px rgba(4, 59, 211, 0.8));
 }
 
+.city-buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 15px 0;
+}
+
+.city-btn {
+  background: white;
+  border: 1px solid #007bff;
+  color: #007bff;
+  padding: 8px 16px;
+  border-radius: 20px; /* 丸っこくて可愛いボタンに */
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.city-btn:hover {
+  background: #007bff;
+  color: white; /* ホバーで色を反転 */
+}
+
 .clothing-guide-page{ background: linear-gradient(135deg, #f8faf9 0%, #f6d4ec 100%); 
   min-height: 100vh;   
   width: 100%;
@@ -270,6 +293,8 @@ h1.guide-title{ font-size: 26px; margin: 0 auto; line-height: 3; color: #007bff;
 .guide-page-bg{ width: 80%; margin: auto; padding: 30px; background-color: #eee8fc; border-radius: 20px; }
 
 .foot-menu{display:flex;justify-content:center;}
+
+
 
 /* --- スマートフォン用の設定 --- */
 @media screen and (max-width: 480px) {

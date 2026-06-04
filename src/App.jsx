@@ -4,8 +4,19 @@ import { Routes, Route, Link } from 'react-router-dom';
 import About from './pages/about';
 import { ClothingGuide } from './pages/clothing-guide';
 
+// --- 各都市のリスト（使い回せるように一番上に配置します） ---
+const cities = [
+  { name: '札幌', query: 'Sapporo' },
+  { name: '東京', query: 'Tokyo' },
+  { name: '名古屋', query: 'Nagoya' },
+  { name: '福岡', query: 'Fukuoka' },
+  { name: 'ニューヨーク', query: 'New York' },
+  { name: 'ロンドン', query: 'London' },
+  { name: 'パリ', query: 'Paris' },
+];
+
 // --- 天気予報を表示するメイン画面のコンポーネント ---
-const Home = ({ weather, loading, locationName, handleGetCurrentLocation, getUvLevel, getAdvice, getBackgroundStyle, getMejiroConfig }) => {
+const Home = ({ weather, loading, locationName, handleGetCurrentLocation, handleGetCityWeather, getUvLevel, getAdvice, getBackgroundStyle, getMejiroConfig }) => {
   if (loading && !weather) return <div style={{ textAlign: 'center', marginTop: '30px' }}>読み込み中...</div>;
 
   const currentTemp = weather ? Math.round(weather.main.temp) : 0;
@@ -13,17 +24,30 @@ const Home = ({ weather, loading, locationName, handleGetCurrentLocation, getUvL
   const uvValue = weather ? weather.uvi : 0;
   const uvInfo = getUvLevel(uvValue);
   const weatherMain = weather ? weather.weather[0].main : 'Default';
-  const backgroundStyle = getBackgroundStyle(weatherMain);
   const mejiro = getMejiroConfig(weatherMain, uvValue);
+const backgroundStyle = getBackgroundStyle(weatherMain);
 
   return (
-    <div className={'top-main ' + weatherMain} >
+    <div className={'top-main ' + weatherMain} style={{ background: backgroundStyle, minHeight: '100vh' }}>
       <h1 style={{ fontSize: '1.5rem', marginBottom: '10px' }}>今のお天気から見る服装アドバイザー</h1>
       <div className='current-place-box'>
         <button onClick={handleGetCurrentLocation} className='current-place-button'>
           📍 あなたの今いる場所の天気は？
         </button>
         <p className='ml-10' style={{ opacity: 0.8 }}><b>{locationName}</b>のお天気</p>
+      </div>
+
+      {/* 都市切り替えボタンのエリア */}
+      <div className="city-buttons-container">
+        {cities.map((city) => (
+          <button 
+            key={city.query} 
+            onClick={() => handleGetCityWeather(city.query, city.name)}
+            className="city-btn"
+          >
+            {city.name}
+          </button>
+        ))}
       </div>
 
       {weather && (
@@ -67,10 +91,12 @@ const Home = ({ weather, loading, locationName, handleGetCurrentLocation, getUvL
       )}
       
       <footer className='foot-menu' style={{ marginTop: '40px' }}>
-<div>
-        <Link to="/about" style={{ color: 'inherit', textDecoration: 'underline' }}>🌞このサイトについて</Link></div>
-<div style={{ marginLeft:'20px' }}>
-        <Link to="/clothing-guide" style={{ color: 'inherit', textDecoration: 'underline',marginLeft:'20px' }}>🌡️服と体感温度のひみつ</Link></div>
+        <div>
+          <Link to="/about" style={{ color: 'inherit', textDecoration: 'underline' }}>🌞このサイトについて</Link>
+        </div>
+        <div style={{ marginLeft:'20px' }}>
+          <Link to="/clothing-guide" style={{ color: 'inherit', textDecoration: 'underline', marginLeft:'20px' }}>🌡️服と体感温度のひみつ</Link>
+        </div>
       </footer>
     </div>
   );
@@ -96,7 +122,7 @@ function App() {
     if (temp >= 25) return "半袖で快適。日差しに注意！";
     if (temp >= 20) return "長袖シャツや薄い羽織ものが◎";
     if (temp >= 15) return "ジャケットが必要な涼しさです。";
-    if (temp >= 10) return "冬用コートを着て暖かく。";
+    if (temp >= 10) return "冬用コートを着て暖かく. ";
     return "マフラー等も必要な寒さです。";
   };
 
@@ -105,7 +131,7 @@ function App() {
       case 'Clear': return 'linear-gradient(135deg, #FFDEE9 0%, #B5FFFC 100%)';
       case 'Clouds': return 'linear-gradient(135deg, #E0EAFC 0%, #CFDEF3 100%)';
       case 'Rain':
-      case 'Drizzle': return 'linear-gradient(135deg, #606c88 0%, #3f4c6b 100%)';
+      case 'Drizzle': return 'linear-gradient(135deg, #9599a2 0%, #6c7893 100%)';
       case 'Snow': return 'linear-gradient(135deg, #E0EAFC 0%, #ffffff 100%)';
       default: return 'linear-gradient(135deg, #e0f2fe 0%, #fff 100%)';
     }
@@ -126,6 +152,7 @@ function App() {
     }
   };
 
+  // 【修正ポイント①】緯度経度から天気を取得する共通処理
   const fetchWeather = async (lat, lon) => {
     setLoading(true);
     try {
@@ -146,6 +173,33 @@ function App() {
     }
   };
 
+  // 【修正ポイント②】都市名（英語）から天気を取得する新しい関数
+  const handleGetCityWeather = async (cityQuery, cityJapaneseName) => {
+    setLoading(true);
+    try {
+      // 1. まず都市名で通常の天気を取得
+      const weatherRes = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${cityQuery}&appid=${API_KEY}&units=metric&lang=ja`
+      );
+      const weatherData = await weatherRes.json();
+
+      // 2. その都市の緯度経度を使って、UV指数も連動して取得
+      const { lat, lon } = weatherData.coord;
+      const uvRes = await fetch(
+        `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${API_KEY}`
+      );
+      const uvData = await uvRes.json();
+
+      // 3. 状態を更新
+      setWeather({ ...weatherData, uvi: uvData.value });
+      setLocationName(cityJapaneseName); // 表示用の地名を日本語にする
+      setLoading(false);
+    } catch (error) {
+      console.error("都市データの取得エラー:", error);
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     fetchWeather(coords.lat, coords.lon);
   }, [coords]);
@@ -159,30 +213,29 @@ function App() {
   };
 
   return (
+    <Routes>
+      {/* ホームページ */}
+      <Route path="/" element={
+        <Home 
+          weather={weather} loading={loading} locationName={locationName} 
+          handleGetCurrentLocation={handleGetCurrentLocation}
+          handleGetCityWeather={handleGetCityWeather} // 【修正ポイント③】お留守番関数をHomeに渡す
+          getUvLevel={getUvLevel}
+          getAdvice={getAdvice} getBackgroundStyle={getBackgroundStyle} getMejiroConfig={getMejiroConfig}
+        />
+      } />
 
-<Routes>
-  {/* ホームページ */}
-  <Route path="/" element={
-    <Home 
-      weather={weather} loading={loading} locationName={locationName} 
-      handleGetCurrentLocation={handleGetCurrentLocation} getUvLevel={getUvLevel}
-      getAdvice={getAdvice} getBackgroundStyle={getBackgroundStyle} getMejiroConfig={getMejiroConfig}
-    />
-  } />
+      {/* Aboutページ */}
+      <Route path="/about" element={
+        <div style={{ textAlign: 'center', padding: '40px' }}>
+          <About />
+          <nav style={{ marginTop: '20px' }}><Link to="/">← ホームへ戻る</Link></nav>
+        </div>
+      } />
 
-  {/* Aboutページ */}
-  <Route path="/about" element={
-    <div style={{ textAlign: 'center', padding: '40px' }}>
-      <About />
-      <nav style={{ marginTop: '20px' }}><Link to="/">← ホームへ戻る</Link></nav>
-    </div>
-  } />
-
-  {/* ★新設：服ごとの体感温度ページ */}
-  {/* 修正後：外側の余計な div を撤去してスッキリ！ */}
-<Route path="/clothing-guide" element={<ClothingGuide />} />
-</Routes>
-
+      {/* 服ごとの体感温度ページ */}
+      <Route path="/clothing-guide" element={<ClothingGuide />} />
+    </Routes>
   );
 }
 
