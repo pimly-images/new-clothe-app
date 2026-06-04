@@ -304,6 +304,105 @@ h1.guide-title{ font-size: 26px; margin: 0 auto; line-height: 3; color: #007bff;
 
 .foot-menu{display:flex;justify-content:center;}
 
+/* Aboutの指定 */
+.about-box{ maxWidth: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+      color: #333;
+      line-height: 1.8;}
+.about-head{ text-align: center; margin-bottom: 60px; }
+.about-mejiro{ width: 50%; height: auto; float: right; }
+
+/* ==========================================================================
+   修正版：右にメジロ、左にセリフ（PC時）
+   ========================================================================== */
+
+.about-mejiro-chat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 40px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  /* 👇 魔法の一行！これでPCの時だけ「セリフ ➜ メジロ」の順に逆転します */
+  flex-direction: row-reverse; 
+}
+
+.about-mejiro {
+  width: 80px;
+  height: auto;
+}
+
+.about-mejiro-balloon {
+  position: relative;
+  background: #ffffff;
+  border: 2px solid #666;
+  border-radius: 15px;
+  padding: 15px 20px;
+  max-width: 280px;
+  text-align: left;
+  color: #555;
+  font-size: 0.9rem;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.05);
+}
+
+/* 💡 トゲの位置を「左側」からはみ出させるのではなく「右側」へ変更！ */
+.about-mejiro-balloon::before {
+  content: "";
+  position: absolute;
+  left: auto;       /* 左側をリセット */
+  right: -12px;     /* 🔴右側にはみ出させる */
+  top: 50%;
+  transform: translateY(-50%);
+  border-style: solid;
+  /* 💡 三角の向きを「左向き」から「右向き」に変える */
+  border-width: 8px 0 8px 12px;
+  border-color: transparent transparent transparent #ffffff;
+  z-index: 2;
+}
+
+/* 💡 輪郭線のトゲも「右側」へ変更！ */
+.about-mejiro-balloon::after {
+  content: "";
+  position: absolute;
+  left: auto;       /* 左側をリセット */
+  right: -15px;     /* 🔴右側にはみ出させる */
+  top: 50%;
+  transform: translateY(-50%);
+  border-style: solid;
+  /* 💡 三角の向きを「左向き」から「右向き」に変える */
+  border-width: 9px 0 9px 13px;
+  border-color: transparent transparent transparent #666;
+  z-index: 1;
+}
+
+/* 【スマホ対応】スマホ（480px以下）の時は、これまで通りメジロが上でセリフが下！ */
+@media screen and (max-width: 480px) {
+  .about-mejiro-chat {
+    flex-direction: column; /* 縦並びにする */
+    gap: 15px;
+  }
+  
+  .about-mejiro-balloon::before {
+    left: 50%;
+    right: auto;
+    top: -10px;
+    transform: translateX(-50%);
+    border-width: 0 8px 10px 8px;
+    border-color: transparent transparent #ffffff transparent;
+  }
+  
+  .about-mejiro-balloon::after {
+    left: 50%;
+    right: auto;
+    top: -13px;
+    transform: translateX(-50%);
+    border-width: 0 9px 11px 9px;
+    border-color: transparent transparent #666 transparent;
+  }
+}
 
 
 /* --- スマートフォン用の設定 --- */

@@ -32,7 +32,7 @@ const Home = ({ weather, loading, locationName, handleGetCurrentLocation, handle
   return (
     // 【修正！】styleの中に背景（bg）と文字色（color）を両方適用！
     <div className={'top-main ' + weatherMain} style={{ background: weatherStyle.bg, color: weatherStyle.color, minHeight: '100vh', paddingBottom: '40px' }}>
-      <h1 style={{ fontSize: '1.5rem', marginBottom: '10px' }}>今のお天気から見る服装アドバイザー</h1>
+      <h1 style={{ fontSize: '1.5rem', marginBottom: '10px',color:'#007bff' }}>今のお天気から見る服装アドバイス</h1>
       <div className='current-place-box'>
         <button onClick={handleGetCurrentLocation} className='current-place-button'>
           📍 あなたの今いる場所の天気は？
@@ -230,14 +230,9 @@ function App() {
         />
       } />
 
-      {/* Aboutページ */}
-      <Route path="/about" element={
-        <div style={{ textAlign: 'center', padding: '40px' }}>
-          <About />
-          <nav style={{ marginTop: '20px' }}><Link to="/">← ホームへ戻る</Link></nav>
-        </div>
-      } />
-
+      {/* Aboutページ */} 
+      <Route path="/about" element={<About />} />
+    
       {/* 服ごとの体感温度ページ */}
       <Route path="/clothing-guide" element={<ClothingGuide />} />
     </Routes>
