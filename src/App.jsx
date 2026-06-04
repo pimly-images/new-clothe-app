@@ -24,7 +24,9 @@ const Home = ({ weather, loading, locationName, handleGetCurrentLocation, handle
   const uvValue = weather ? weather.uvi : 0;
   const uvInfo = getUvLevel(uvValue);
   const weatherMain = weather ? weather.weather[0].main : 'Default';
-  const mejiro = getMejiroConfig(weatherMain, uvValue);
+  // メジロに「気温」と「風速」も教えてあげる！
+const windSpeed = weather ? weather.wind.speed : 0;
+const mejiro = getMejiroConfig(weatherMain, uvValue, currentTemp, windSpeed);
 
   // 【修正！】お天気スタイル（背景色と文字色のセット）を呼び出す
   const weatherStyle = getWeatherStyle(weatherMain);
@@ -146,20 +148,50 @@ function App() {
     }
   };
 
-  const getMejiroConfig = (weatherMain, uv) => {
-    if (uv >= 6 && weatherMain === 'Clear') {
-      return { image: "/mejiro-sunny.png", message: "日差しが強いね！メジロも日陰を探しちゃうよ。" };
+  // --- 新しくなったメジロのおしゃべり判定関数 ---
+const getMejiroConfig = (weatherMain, uv, temp, windSpeed) => {
+  // ① 雪が降ったら即、雪合戦！
+  if (weatherMain === 'Snow') {
+    return { image: "/mejiro-rain.png", message: "わーい、雪だ、雪合戦日和だよ！たくさん投げ合って、体の中からポカポカ温まろう！" };
+  }
+
+  // ② 風が強すぎる時は危ないから屋内へ
+  if (windSpeed >= 6) {
+    return { image: "/mejiro-cloudy.png", message: "わわっ、風が強いね！外は危ないから、今日は地下街やアーケードでショッピング日和だよ" };
+  }
+
+  // ③ 雨のときの分岐
+  if (weatherMain === 'Rain' || weatherMain === 'Drizzle') {
+    if (windSpeed >= 4) {
+      return { image: "/mejiro-rain.png", message: "雨も風も強いね。今日みたいな日は、お出かけするなら映画館や美術館日和だよ🎬" };
+    } else {
+      return { image: "/mejiro-rain.png", message: "しとしと雨だね。今日はおうちカフェ日和。お気に入りの飲み物を片手にのんびり読書はどう？☕" };
     }
-    switch (weatherMain) {
-      case 'Rain':
-      case 'Drizzle':
-        return { image: "/mejiro-rain.png", message: "あめあめ、ふれふれ。雨宿りしていかない？" };
-      case 'Clouds':
-        return { image: "/mejiro-cloudy.png", message: "曇ってるねぇ。どんより気分も吹き飛ばそう！" };
-      default:
-        return { image: "/mejiro-sunny.png", message: "いいお天気！羽をのばしてどこへ行こうか？" };
+  }
+
+  // ④ 晴れ・曇りのときのシチュエーション分岐
+  if (weatherMain === 'Clear' || weatherMain === 'Clouds') {
+    // 真夏日プール
+    if (weatherMain === 'Clear' && temp >= 28 && windSpeed < 4) {
+      return { image: "/mejiro-sunny.png", message: "今日は最高のプール日和！冷たい水が最高に気持ちいいよ。熱中症には気をつけてね🏊‍♀️" };
     }
-  };
+    // 音楽フェス（20℃〜27℃の快適な気候）
+    if (temp >= 20 && temp <= 27) {
+      return { image: "/mejiro-sunny.png", message: "今日は最高の音楽フェス日和！心地いい風の中で、音楽に合わせてステップを踏んじゃおう🎵🎸" };
+    }
+    // ハイキング（14℃〜19℃の涼しく歩きやすい気候）
+    if (temp >= 14 && temp < 20) {
+      return { image: "/mejiro-sunny.png", message: "今日は絶好のハイキング日和！お弁当を持って、美味しい空気を吸いに行こう🥾" };
+    }
+    // お洗濯日和（紫外線がしっかりある日）
+    if (uv >= 3) {
+      return { image: "/mejiro-sunny.png", message: "今日はお洗濯日和！お日様のパワーで、お気に入りの服がカラッと乾きそう🧺" };
+    }
+  }
+
+  // ⑤ どれにも当てはまらない、普通の穏やかな日
+  return { image: "/mejiro-sunny.png", message: "のんびり近所をお散歩日和。お気に入りのカフェに寄り道してみる？🐾" };
+};
 
   const fetchWeather = async (lat, lon) => {
     setLoading(true);
