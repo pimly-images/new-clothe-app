@@ -38,7 +38,7 @@ const AboutPage = () => {
           <li><strong>⭐️リアルタイム天気予報：</strong> 現在地の正確な天気を瞬時に確認できます。</li>
           <li><strong>🌡️体感温度：</strong> 体感温度を含めて服装のアドバイスをします。</li>
           <li><strong>👕服装アドバイス：</strong> 気温（最高・最低）に合わせた最適なコーディネートを提案します。</li>
-          <li><strong>🗺️お出かけ指数：</strong> 雨具の必要性や、紫外線・寒さ対策のヒントをお届けします。</li>
+          <li><strong>🗺️過ごし方一言アドバイス：</strong> 気温や風速を元に過ごし方のヒントをお届けします。</li>
           <li><strong>☀️UV指数：</strong> 紫外線の指数を表示お届けします。</li>
           <li><strong>🌍世界のお天気：</strong> 世界の代表都市のお天気や気温も確認できます。</li>
         </ul>
@@ -48,7 +48,7 @@ const AboutPage = () => {
         {/* メジロの吹き出しメッセージエリア */}
 <div className="about-mejiro-chat">
   {/* メジロのイラスト */}
-  <img src="/mejiro.png" alt="メジロ" className="about-mejiro" />
+  <img src="/mejiro-about.png" alt="メジロ" className="about-mejiro" />
 
   {/* 吹き出しの本体 */}
   <div className="about-mejiro-balloon">
