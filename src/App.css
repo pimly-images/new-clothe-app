@@ -266,7 +266,7 @@ text-align: center; padding: 0px 20px 30px 20px; font-family: sans-serif;
 .guide01{ width: 80%; margin: auto; margin-bottom: 40px; text-align: left; }
 .guide01 h2{ border-bottom: 1px #6eb1f8 dotted; color: #007bff; }
 .guide01 p{ color: #222;}
-h1 .guide-title{ font-size: 26px; margin: 0 auto; line-height: 3; color: #007bff; }
+h1.guide-title{ font-size: 26px; margin: 0 auto; line-height: 3; color: #007bff; }
 .guide-page-bg{ width: 80%; margin: auto; padding: 30px; background-color: #eee8fc; border-radius: 20px; }
 
 .foot-menu{display:flex;justify-content:center;}
