@@ -4,7 +4,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 import About from './pages/about';
 import { ClothingGuide } from './pages/clothing-guide';
 
-// --- 各都市のリスト（使い回せるように一番上に配置します） ---
+// --- 各都市のリスト ---
 const cities = [
   { name: '札幌', query: 'Sapporo' },
   { name: '東京', query: 'Tokyo' },
@@ -16,7 +16,7 @@ const cities = [
 ];
 
 // --- 天気予報を表示するメイン画面のコンポーネント ---
-const Home = ({ weather, loading, locationName, handleGetCurrentLocation, handleGetCityWeather, getUvLevel, getAdvice, getBackgroundStyle, getMejiroConfig }) => {
+const Home = ({ weather, loading, locationName, handleGetCurrentLocation, handleGetCityWeather, getUvLevel, getAdvice, getWeatherStyle, getMejiroConfig }) => {
   if (loading && !weather) return <div style={{ textAlign: 'center', marginTop: '30px' }}>読み込み中...</div>;
 
   const currentTemp = weather ? Math.round(weather.main.temp) : 0;
@@ -25,10 +25,13 @@ const Home = ({ weather, loading, locationName, handleGetCurrentLocation, handle
   const uvInfo = getUvLevel(uvValue);
   const weatherMain = weather ? weather.weather[0].main : 'Default';
   const mejiro = getMejiroConfig(weatherMain, uvValue);
-const backgroundStyle = getBackgroundStyle(weatherMain);
+
+  // 【修正！】お天気スタイル（背景色と文字色のセット）を呼び出す
+  const weatherStyle = getWeatherStyle(weatherMain);
 
   return (
-    <div className={'top-main ' + weatherMain} style={{ background: backgroundStyle, minHeight: '100vh' }}>
+    // 【修正！】styleの中に背景（bg）と文字色（color）を両方適用！
+    <div className={'top-main ' + weatherMain} style={{ background: weatherStyle.bg, color: weatherStyle.color, minHeight: '100vh', paddingBottom: '40px' }}>
       <h1 style={{ fontSize: '1.5rem', marginBottom: '10px' }}>今のお天気から見る服装アドバイザー</h1>
       <div className='current-place-box'>
         <button onClick={handleGetCurrentLocation} className='current-place-button'>
@@ -122,18 +125,24 @@ function App() {
     if (temp >= 25) return "半袖で快適。日差しに注意！";
     if (temp >= 20) return "長袖シャツや薄い羽織ものが◎";
     if (temp >= 15) return "ジャケットが必要な涼しさです。";
-    if (temp >= 10) return "冬用コートを着て暖かく. ";
+    if (temp >= 10) return "冬用コートを着て暖かく。";
     return "マフラー等も必要な寒さです。";
   };
 
-  const getBackgroundStyle = (weatherMain) => {
+  // 【ここが変わりました！】背景色（bg）と文字色（color）をセットで返す新関数！
+  const getWeatherStyle = (weatherMain) => {
     switch (weatherMain) {
-      case 'Clear': return 'linear-gradient(135deg, #FFDEE9 0%, #B5FFFC 100%)';
-      case 'Clouds': return 'linear-gradient(135deg, #E0EAFC 0%, #CFDEF3 100%)';
+      case 'Clear': 
+        return { bg: 'linear-gradient(135deg, #FFDEE9 0%, #B5FFFC 100%)', color: '#ff6b6b' }; // 晴れ：ピンク×水色背景、優しい赤文字
+      case 'Clouds': 
+        return { bg: 'linear-gradient(135deg, #E0EAFC 0%, #CFDEF3 100%)', color: '#333333' }; // 曇り：グレー背景、濃いグレー文字
       case 'Rain':
-      case 'Drizzle': return 'linear-gradient(135deg, #9599a2 0%, #6c7893 100%)';
-      case 'Snow': return 'linear-gradient(135deg, #E0EAFC 0%, #ffffff 100%)';
-      default: return 'linear-gradient(135deg, #e0f2fe 0%, #fff 100%)';
+      case 'Drizzle': 
+        return { bg: 'linear-gradient(135deg, #9599a2 0%, #2a3858 100%)', color: '#ffffff' }; // 霧雨・雨：暗い背景、白い文字！
+      case 'Snow': 
+        return { bg: 'linear-gradient(135deg, #E0EAFC 0%, #ffffff 100%)', color: '#4b5563' }; // 雪：白背景、グレー文字
+      default: 
+        return { bg: 'linear-gradient(135deg, #e0f2fe 0%, #fff 100%)', color: '#333333' };
     }
   };
 
@@ -152,7 +161,6 @@ function App() {
     }
   };
 
-  // 【修正ポイント①】緯度経度から天気を取得する共通処理
   const fetchWeather = async (lat, lon) => {
     setLoading(true);
     try {
@@ -173,26 +181,21 @@ function App() {
     }
   };
 
-  // 【修正ポイント②】都市名（英語）から天気を取得する新しい関数
   const handleGetCityWeather = async (cityQuery, cityJapaneseName) => {
     setLoading(true);
     try {
-      // 1. まず都市名で通常の天気を取得
       const weatherRes = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${cityQuery}&appid=${API_KEY}&units=metric&lang=ja`
       );
       const weatherData = await weatherRes.json();
-
-      // 2. その都市の緯度経度を使って、UV指数も連動して取得
       const { lat, lon } = weatherData.coord;
       const uvRes = await fetch(
         `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${API_KEY}`
       );
       const uvData = await uvRes.json();
 
-      // 3. 状態を更新
       setWeather({ ...weatherData, uvi: uvData.value });
-      setLocationName(cityJapaneseName); // 表示用の地名を日本語にする
+      setLocationName(cityJapaneseName);
       setLoading(false);
     } catch (error) {
       console.error("都市データの取得エラー:", error);
@@ -219,9 +222,11 @@ function App() {
         <Home 
           weather={weather} loading={loading} locationName={locationName} 
           handleGetCurrentLocation={handleGetCurrentLocation}
-          handleGetCityWeather={handleGetCityWeather} // 【修正ポイント③】お留守番関数をHomeに渡す
+          handleGetCityWeather={handleGetCityWeather}
           getUvLevel={getUvLevel}
-          getAdvice={getAdvice} getBackgroundStyle={getBackgroundStyle} getMejiroConfig={getMejiroConfig}
+          getAdvice={getAdvice} 
+          getWeatherStyle={getWeatherStyle} // 【修正！】新しい関数を渡す
+          getMejiroConfig={getMejiroConfig}
         />
       } />
 

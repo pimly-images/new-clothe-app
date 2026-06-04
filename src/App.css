@@ -279,6 +279,16 @@ text-align: center; padding: 0px 20px 30px 20px; font-family: sans-serif;
   background: #007bff;
   color: white; /* ホバーで色を反転 */
 }
+/* 雨（Rain）と霧雨（Drizzle）のときの、全体の文字色を白にする */
+.top-main.Rain,
+.top-main.Drizzle {
+  color: #ffffff;
+}
+
+/* 晴れ（Clear）のときの、全体の文字色をオレンジにする */
+.top-main.Clear {
+  color: #ff6b6b;
+}
 
 .clothing-guide-page{ background: linear-gradient(135deg, #f8faf9 0%, #f6d4ec 100%); 
   min-height: 100vh;   
