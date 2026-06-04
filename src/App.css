@@ -265,6 +265,7 @@ text-align: center; padding: 0px 20px 30px 20px; font-family: sans-serif;
 .guide-copy{ width: 80%; margin: auto; padding: 20px; background-color: #e0f2fe; color: #007bff; border-radius: 20px; margin-bottom: 20px;}
 .guide01{ width: 80%; margin: auto; margin-bottom: 40px; text-align: left; }
 .guide01 h2{ border-bottom: 1px #6eb1f8 dotted; color: #007bff; }
+.guide01 p{ color: #222;}
 h1 .guide-title{ font-size: 26px; margin: 0 auto; line-height: 3; color: #007bff; }
 .guide-page-bg{ width: 80%; margin: auto; padding: 30px; background-color: #eee8fc; border-radius: 20px; }
 
@@ -273,7 +274,7 @@ h1 .guide-title{ font-size: 26px; margin: 0 auto; line-height: 3; color: #007bff
 /* --- スマートフォン用の設定 --- */
 @media screen and (max-width: 480px) {
 .guide-copy{ width: 100%; margin: auto; padding: 20px; background-color: #e0f2fe; color: #007bff; border-radius: 20px; margin-bottom: 20px;}
-.guide01{ width: 100%; margin: auto; margin-bottom: 40px; text-align: left; }
+.guide01{ width: 100%; margin: auto; margin-bottom: 40px; padding: 10px; text-align: left; }
 .guide-page-bg{ width: 100%; margin: auto; padding: 10px; background-color: #eee8fc; border-radius: 20px; }
 .guide-copy{ width: 90%; margin: auto; padding: 20px; background-color: #e0f2fe; color: #007bff; border-radius: 20px; margin-bottom: 20px;}
  
